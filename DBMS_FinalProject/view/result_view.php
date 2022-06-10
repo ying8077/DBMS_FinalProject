@@ -249,13 +249,7 @@ $_SESSION["id"] = $ID;
 </style>
 
 <script>
-    // $(document).ready(function() {
-    //     document.getElementById('flag_icon').src = localStorage["country"];
-    //     // console.log(localStorage["countryID"]);
-    //     // console.log(localStorage["uname"]);
-    //     document.getElementById('uname').innerHTML = localStorage["uname"];
-    // })
-
+    
     function encodeHTML(s) {
         return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
     }
@@ -283,7 +277,6 @@ $_SESSION["id"] = $ID;
             })
             .done((data) => {
                 const result = JSON.parse(data);
-                //newComment 沒有留言時間，因為這是後端自動產生的，所以多存一個時間
                 newComment.created_at = result;
                 appendCommentToDOM(commentsDOM, newComment, false);
                 $('#ipt_com').val('');
