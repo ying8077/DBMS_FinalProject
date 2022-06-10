@@ -156,17 +156,6 @@
         color: white;
     }
 
-    #box {
-
-        margin-left: 300px;
-        display: none;
-        width: 315px;
-        height: 180px;
-        background: #CCC;
-        border: 1px solid #333;
-        padding: 12px;
-        text-align: center;
-    }
 </style>
 
 <script>
@@ -177,17 +166,5 @@
         localStorage.country = $('#sel_country').val().split(',')[1];
     }
 
-    function display() {
-        document.getElementById("box").style.display = "block";
-    }
-
-    function disappear() {
-        document.getElementById("box").style.display = "none";
-    }
-    // console.log(document.querySelector("#uname").innerHTML);
-    // console.log(typeof document.querySelector("#uname").innerHTML);
-    // console.log($('#sel_country').val().split(',')[0]);
-    // console.log(typeof $('#sel_country').val().split(',')[0]);
-    // console.log( $('#sel_country').val().split(',')[1]);
-    // console.log(typeof $('#sel_country').val().split(',')[1]);
+  
 </script>
