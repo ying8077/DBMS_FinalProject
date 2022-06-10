@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
+#back_search {
+    border: none;
+}
+
+#badge {
+    margin-right: 30px;
+    background-color: #35E47B;
+}
+
+.link {
+    color: #222222;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.link:hover,
+.link:active,
+.link:focus {
+    color: #5A5A5A;
+}

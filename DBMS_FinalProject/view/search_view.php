@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccine</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script src="../src/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+    <?php
+    session_start();
+    include('../conn.php');
+
+    $ID = $_SESSION["id"];
+    $ftype = $_SESSION["type"];
+    $sql = "SELECT * FROM `user` WHERE `U_ID`='$ID'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $uname = $row['Name'];
+        $HealthID = $row['HealthID'];
+        $Email = $row['Email'];
+    } else {
+        echo "0 results";
+    }
+
+    $sql_t = "SELECT * FROM `Take` WHERE `U_ID`='$ID';";
+    $result_t = $conn->query($sql_t);
+    if ($result_t->num_rows > 0) {
+        $vac_num = $result_t->num_rows;
+    } else {
+       $vac_num = 0;
+    }
+
+    $_SESSION["name"] = $uname;
+    $_SESSION["id"] = $ID;
+    $_SESSION["hin"] = $HealthID;
+    $_SESSION["email"] = $Email;
+    $_SESSION["status"] = $vac_num;
+    $_SESSION["type"] = $ftype;
+
+    ?>
+    <div style="width:50%;height:100vh;background-color:#EDEDED;float:left;">
+        <div class="mx-auto" style="width:75%;font-family:'Poppins';font-size:18px;font-weight:400">
+            <div style="margin-top:60px;">
+                <button class="btn rounded-pill" style="background-color:#D5D5D5">
+                    <span id="badge" class="badge rounded-circle">&nbsp;</span><?php echo $uname; ?></button>
+                <span id="log_out" style="margin-left:65%;"><a href="../view/login_view.php" style="color:red;"><i class="fa fa-sign-out"></i>Log out.</a></span>
+            </div>
+            <div style="margin-top:10%">
+                <h1 id="uname" style="font-weight:600"><?php echo $uname; ?></h1>
+                <label class="mt-3">ID number&nbsp;:&nbsp;<?php echo $ID; ?><br>
+                    Health insurance number&nbsp;:&nbsp;<?php echo $HealthID; ?><br>
+                    E-mail&nbsp;:&nbsp;<?php echo $Email; ?><br>
+                    小黃卡&nbsp;:
+                    <label style="text-decoration:underline" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        pic
+                    </label>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <img id="image" style="width: 750px;height: 500px;" src=<?php echo "../controller/show_pic.php?filename=" . $uname  ?> />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+            </div>
+            <div class="mt-4" style="font-size:16px;font-weight:600">
+                <label>Status:&nbsp;&nbsp;</label>
+                <!-- <label id="status" style="color:#48742C"><?php echo $vac_num ?>nd dose 
+                <i class="fa fa-check-circle"></i></label> -->
+                <?php
+                if ($vac_num>= 2) {
+                    $color = '<label style="color:#48742C">';
+                    $sign = '<i class="fa fa-check-circle"></i></label>';
+                } elseif ($vac_num <= 1) {
+                    $color = '<label style="color:#B22222">';
+                    $sign = '<i class="fa fa-times-circle"></i></label>';
+                }
+                echo $color . $vac_num . " dose " . $sign;
+                ?>
+            </div>
+            <div class="mt-4 ">
+                <div style="float:left;">
+                    <button style="margin-left:30px;border:none;"><a href="../view/map_view.php"><img style="width:250px;height:250px;" src="../src/pic/MapBtn.png"></a></button>
+                </div>
+                <div class="d-grid col-5" style="float:right;margin-top:10%">
+                    <button type="button" class="btn btn-primary"><a style="color:white" href="../view/update_view.php">Update</a></button>
+                    <p></p>
+                    <button type="button" class="btn btn-outline-secondary">QRcode</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form name="country" method="post" action="../view/result_view.php">
+        <div style="width:50%;height:100vh;background-color:#222222;float:right;">
+            <div class="mx-auto" style="width:70%;font-family:'Poppins';font-size:18px;font-weight:300">
+                <label style="margin-top:150px;color: white">Choose your destination.</label>
+                <p></p>
+                <div>
+                    <select id="sel_country" name="cid" class="form-select" aria-label="Default select example">
+                        <option value="" disabled selected hidden>Country</option>
+                        <option value="1,../src/pic/america.png">USA</option>
+                        <option value="2,../src/pic/uk.png">United Kingdom</option>
+                        <option value="3,../src/pic/china.png">China</option>
+                        <option value="4,../src/pic/hk.png">HongKong</option>
+                        <option value="5,../src/pic/singapore.png">Singapore</option>
+                        <option value="6,../src/pic/korea.png">Korea</option>
+                        <option value="7,../src/pic/japan.png">Japan</option>
+                        <option value="8,../src/pic/australia.png">Australia</option>
+                        <option value="9,../src/pic/france.png">France</option>
+                        <option value="10,../src/pic/germany.png">Germany</option>
+                        <option value="11,../src/pic/switzerland.png">Switzerland</option>
+                        <option value="12,../src/pic/spain.png">Spain</option>
+                    </select>
+                </div>
+                <div class="d-grid col-12">
+                    <button type="submit" id="btn_next" class="btn btn-outline-secondary" style="margin-top:350px;" onclick="set()">Next→</button>
+                </div>
+            </div>
+    </form>
+</body>
+
+</html>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
+    #badge {
+        margin-right: 30px;
+        background-color: #35E47B;
+    }
+
+    #btn_next:hover,
+    #btn_next:active,
+    #btn_next:focus {
+        background-color: #222222;
+    }
+
+    .link {
+        color: white;
+    }
+
+    #btn_next:hover .link,
+    #btn_next:focus .link,
+    #btn_next:active .link {
+        color: white;
+    }
+
+    #box {
+
+        margin-left: 300px;
+        display: none;
+        width: 315px;
+        height: 180px;
+        background: #CCC;
+        border: 1px solid #333;
+        padding: 12px;
+        text-align: center;
+    }
+</style>
+
+<script>
+    function set() {
+        location.href = '../view/result_view.php';
+        localStorage.uname = document.querySelector("#uname").innerHTML;
+        localStorage.countryID = $('#sel_country').val().split(',')[0];
+        localStorage.country = $('#sel_country').val().split(',')[1];
+    }
+
+    function display() {
+        document.getElementById("box").style.display = "block";
+    }
+
+    function disappear() {
+        document.getElementById("box").style.display = "none";
+    }
+    // console.log(document.querySelector("#uname").innerHTML);
+    // console.log(typeof document.querySelector("#uname").innerHTML);
+    // console.log($('#sel_country').val().split(',')[0]);
+    // console.log(typeof $('#sel_country').val().split(',')[0]);
+    // console.log( $('#sel_country').val().split(',')[1]);
+    // console.log(typeof $('#sel_country').val().split(',')[1]);
+</script>
