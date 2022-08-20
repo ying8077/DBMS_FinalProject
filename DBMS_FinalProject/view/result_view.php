@@ -240,7 +240,6 @@ $_SESSION["id"] = $ID;
             })
             .done((data) => {
                 const result = JSON.parse(data);
-                //newComment 沒有留言時間，因為這是後端自動產生的，所以多存一個時間
                 newComment.created_at = result;
                 appendCommentToDOM(commentsDOM, newComment, false);
                 $('#ipt_com').val('');
