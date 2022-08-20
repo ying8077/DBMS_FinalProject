@@ -1,0 +1,59 @@
+.info {
+    margin-top: 50px
+}
+
+.info h1 {
+    font-weight: 600;
+}
+
+.info_card label {
+    text-decoration: underline
+}
+
+.info_card .pic {
+    width: 750px;
+    height: 500px;
+}
+
+.dose {
+    font-size: 16px;
+    font-weight: 600
+}
+
+.map {
+    float: left;
+}
+
+.map button {
+    margin-left: 30px;
+    border: none;
+}
+
+.map img {
+    width: 250px;
+    height: 250px;
+}
+
+.btn_group {
+    float: right;
+    margin-top: 12%
+}
+
+.btn_group a {
+    color: white;
+}
+
+.wrapper_right {
+    width: 70%;
+    margin: 150px 0 5px;
+}
+
+.wrapper_right button {
+    margin-top: 400px;
+}
+
+#btn_submit:hover,
+#btn_submit:active,
+#btn_submit:focus {
+    background-color: #222222;
+}

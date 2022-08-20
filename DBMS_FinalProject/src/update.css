@@ -1,0 +1,19 @@
+    .ipt_group input{
+        height: 45px;
+        margin-bottom: 12px;
+    }
+
+    .form_btn_sumbit {
+        margin-top: 50px;
+    }
+
+    .wrapper_right {
+        width: 60%;
+        margin-top: 175px
+    }
+
+    .wrapper_right label {
+        color: white;
+        display: block;
+        margin-bottom: 4px;
+    }

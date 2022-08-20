@@ -1,0 +1,105 @@
+    body {
+        overflow: hidden;
+    }
+
+    .wrapper_sticky {
+        position: sticky;
+        top: 0;
+        height: 360px;
+    }
+
+    #status,
+    .badge,
+    .return_link {
+        white-space: pre;
+    }
+
+    .wrapper_sticky img {
+        width: 135px;
+        height: 135px;
+    }
+
+    .wrapper_sticky h5 {
+        margin-top: -15px;
+    }
+
+    .content {
+        max-height: 430px;
+        overflow-y: overlay;
+        padding: 0 10px 10px 0;
+    }
+
+    .content::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .content::-webkit-scrollbar-button {
+        background: transparent;
+    }
+
+    .content::-webkit-scrollbar-track-piece {
+        background: rgb(217, 216, 216);
+        border-radius: 10px;
+    }
+
+    .content::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: rgba(0, 0, 0, 0.4);
+        border: 1px solid slategrey;
+    }
+
+    .content label {
+        font-size: 16px;
+    }
+
+    .dose {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    /* .container_right {
+        margin-left: 50%;
+        position: fixed;
+    } */
+
+    .wrapper_right {
+        width: 75%;
+        color: white;
+    }
+
+    .wrapper_right h1 {
+        margin-top: 150px;
+        font-weight: 600;
+    }
+
+    .comments {
+        height: 485px;
+        margin-bottom: 20px;
+        overflow: scroll;
+    }
+
+    .comments::-webkit-scrollbar {
+        display: none;
+    }
+
+    .add_comment img {
+        width: 30px;
+    }
+
+    .add_comment label {
+        font-size: 17px;
+        font-weight: 500
+    }
+
+    .add_comment form input {
+        background-color: #222222;
+        color: white;
+        border-bottom-style: solid;
+        border-right-style: none;
+    }
+
+    .add_comment form input:hover,
+    .add_comment form input:active,
+    .add_comment form input:focus {
+        outline: none;
+    }

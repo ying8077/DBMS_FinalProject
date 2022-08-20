@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+.wrapper_left {
+    width: 80%;
+}
+
+.bar {
+    padding-top: 60px;
+}
+
+.bar .btn_user {
+    background-color: #D5D5D5;
+    height: 40px;
+}
+
+.bar .badge {
+    margin-right: 30px;
+    background-color: #35E47B;
+}
+
+#bar_link a {
+    color: red;
+}
+
+.return {
+    font-size: 35px;
+    margin-top: 50px
+}
+
+.return a {
+    color: #222222;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.return a:hover,
+.return a:active,
+.return a:focus {
+    color: #5A5A5A;
+}
